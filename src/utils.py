@@ -89,7 +89,7 @@ def get_state(hash_funcs=None):
 
     return session._custom_session_state
 
-
+# Only used for separating namespace, everything can be saved at state variable as well.
 CONFIG_DEFAULTS: Dict[str, Any] = {"slider_value": 0}
 
 def provide_state(hash_funcs=None):
