@@ -1,4 +1,5 @@
 import streamlit as st
 
 
-st.write("Hello world !")
+st.title("YAY My App Works!")
+st.balloons()

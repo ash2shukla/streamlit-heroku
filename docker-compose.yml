@@ -2,9 +2,11 @@ version: '3'
 
 services:
     app:
-        image: streamli-app:1.0.0
+        image: streamlit-docker
         build:
             dockerfile: ./Dockerfile
             context: .
         environment:
-            - PORT=8000
+            - PORT=${PORT}
+        ports:
+            - ${PORT}:${PORT}
