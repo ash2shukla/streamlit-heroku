@@ -8,4 +8,4 @@ RUN pip install -r requirements.txt
 
 COPY src ./
 
-CMD ["streamlit", "run", "main.py"]
+CMD ["sh", "-c", "streamlit run --server.port $PORT /usr/app/src/main.py"]
