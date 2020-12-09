@@ -1,14 +1,10 @@
 import streamlit as st
 
-from src.utils import Page, provide_state
-from src.pages import Page1, Page2
+from src.utils import add_custom_css
+from src.pages import PAGE_MAP
+from src.state import provide_state
 
-from typing import Dict, Type
-
-PAGE_MAP: Dict[str, Type[Page]] = {
-    "Page 1": Page1,
-    "Page 2": Page2,
-}
+add_custom_css()
 
 @provide_state()
 def main(state=None):

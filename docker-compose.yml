@@ -10,3 +10,5 @@ services:
             - PORT=${PORT}
         ports:
             - ${PORT}:${PORT}
+        volumes:
+            - ./app:/usr/app/src/
