@@ -1,8 +1,10 @@
-from streamlit.report_thread import get_report_ctx
-from streamlit.hashing import _CodeHasher
-from streamlit.server.server import Server
+from streamlit.runtime.scriptrunner import get_script_run_ctx
+from streamlit.runtime.legacy_caching.hashing import _CodeHasher
+from streamlit.runtime import Runtime
+from streamlit.web.server.server import Server
 import streamlit as st
 from typing import Dict, Any
+from streamlit.runtime import get_instance
 from copy import deepcopy
 
 
@@ -59,14 +61,15 @@ class _SessionState:
                 self._state["data"], None
             ):
                 self._state["is_rerun"] = True
-                self._state["session"].request_rerun()
+                self._state["session"].request_rerun(None)
 
         self._state["hash"] = self._state["hasher"].to_bytes(self._state["data"], None)
 
 
 def _get_session():
-    session_id = get_report_ctx().session_id
-    session_info = Server.get_current()._get_session_info(session_id)
+    runtime = get_instance()
+    session_id = get_script_run_ctx().session_id
+    session_info = runtime._session_mgr.get_session_info(session_id)
 
     if session_info is None:
         raise RuntimeError("Couldn't get your Streamlit Session object.")
