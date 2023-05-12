@@ -4,11 +4,10 @@ services:
     app:
         image: streamlit-docker
         build:
-            dockerfile: ./Dockerfile
-            context: .
+            dockerfile: Dockerfile
         environment:
             - PORT=${PORT}
         ports:
             - ${PORT}:${PORT}
         volumes:
-            - ./app:/usr/app/src/
+            - ./app:/app
